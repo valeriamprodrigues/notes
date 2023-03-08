@@ -1,4 +1,4 @@
 package com.valeriamprodrigues.notes.data
 
-class Contants {
-}
+
+const val COLLECTION_NOTES = "notes"

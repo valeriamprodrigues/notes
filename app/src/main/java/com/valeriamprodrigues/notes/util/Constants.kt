@@ -1,4 +1,4 @@
 package com.valeriamprodrigues.notes.util
 
-class Constants {
-}
+
+const val COLLECTION_ROOT = "data"

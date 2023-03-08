@@ -1,5 +1,7 @@
 package com.valeriamprodrigues.notes.domain.usecase
 
-interface GetNoteUseCase {
-    suspend operator fun invoke()
+import com.valeriamprodrigues.notes.domain.model.Note
+
+interface GetNotesUseCase {
+    suspend operator fun invoke(): List<Note>
 }

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -36,11 +37,13 @@ android {
             dimension 'type'
             applicationIdSuffix '.sweet'
             manifestPlaceholders.appName = "Sweet Notes"
+            buildConfigField "String", "FIREBASE_FLAVOR_COLLECTION", "\"sweet\""
         }
         idea {
             dimension 'type'
             applicationIdSuffix '.idea'
             manifestPlaceholders.appName = "Ideas Notes"
+            buildConfigField "String", "FIREBASE_FLAVOR_COLLECTION",  "\"idea\""
         }
     }
 }

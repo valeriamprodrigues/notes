@@ -1,4 +1,11 @@
 package com.valeriamprodrigues.notes.data
 
-interface NoteCataSource {
+import com.valeriamprodrigues.notes.domain.model.Note
+
+interface NoteDataSource {
+
+    suspend fun createNote(note: Note): Note
+
+    suspend fun getNotes(): List<Note>
+
 }
