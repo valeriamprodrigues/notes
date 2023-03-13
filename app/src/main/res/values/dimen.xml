@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="screen_padding">16dp</dimen>
-    <dimen name="margin">10dp</dimen>
     <dimen name="add_note_description">200dp</dimen>
+
+    <dimen name="margin">10dp</dimen>
+    <dimen name="margin_fab">16dp</dimen>
 </resources>

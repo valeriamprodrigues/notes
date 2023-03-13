@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.valeriamprodrigues.notes.R
+import com.valeriamprodrigues.notes.domain.model.Note
 import com.valeriamprodrigues.notes.domain.usecase.CreateNoteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,6 +22,9 @@ class AddNoteViewModel @Inject constructor(
     private val _descriptionError = MutableLiveData<Int?>()
     val descriptionError: LiveData<Int?> = _descriptionError
 
+    private val _noteCreated = MutableLiveData<Note>()
+    val noteCreated: LiveData<Note> = _noteCreated
+
     private var isFormValid = false
     fun createNote(title: String, description: String) = viewModelScope.launch {
         isFormValid = true
@@ -29,10 +33,10 @@ class AddNoteViewModel @Inject constructor(
         if (isFormValid) {
             try {
                 val note = createNoteUseCase(title = title, description = description)
+                _noteCreated.value = note
 
             } catch (e: Exception) {
                 Log.d("Erro:", e.toString())
-
             }
         }
     }

@@ -16,20 +16,20 @@
             android:id="@+id/et_add_note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_add_note_description"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="@string/add_note_description"
+        android:hint="@string/description"
         android:layout_marginTop="@dimen/margin"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_add_note_description"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/add_note_description"
-            android:maxLines="5"
+            android:layout_height="wrap_content"
           />
     </com.google.android.material.textfield.TextInputLayout>
     <Button

@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_add_note" />
     <fragment
         android:id="@+id/notesFragment"
-        android:name="com.valeriamprodrigues.notes.ui.addNote.NotesFragment"
+        android:name="com.valeriamprodrigues.notes.ui.notes.NotesFragment"
         android:label="NotesFragment"
         tools:layout="@layout/fragment_notes">
         <action

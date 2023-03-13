@@ -1,27 +1,31 @@
-package com.valeriamprodrigues.notes
+package com.valeriamprodrigues.notes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
+import com.valeriamprodrigues.notes.R
 import com.valeriamprodrigues.notes.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_main) as NavHostFragment
+
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        binding.tbMain.setupWithNavController(navController, appBarConfiguration)
+
+     //   binding.toolbarMain.setupWithNavController(navController, appBarConfiguration)
     }
 }
