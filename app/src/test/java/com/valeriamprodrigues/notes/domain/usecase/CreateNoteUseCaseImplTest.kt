@@ -11,7 +11,7 @@ import org.mockito.Mockito
 import org.mockito.kotlin.any
 import java.util.*
 
- class CreateNoteUseCaseImplTest {
+internal class CreateNoteUseCaseImplTest {
 
      @Mock
      val dataSource = Mockito.mock(NoteDataSource::class.java)
@@ -19,13 +19,14 @@ import java.util.*
      val createNoteUseCase = CreateNoteUseCaseImpl(noteRepositoryMock)
 
      @Test
-     fun testInsertNoteInUseCase() = runBlocking {
+     fun `when input is valid, then output should be correct`() = runBlocking {
+         // given
          val note = Note(
              id = UUID.randomUUID().toString(),
              title = "Test title",
              text = "Test text"
          )
-
+         // when
          Mockito.`when`(
              noteRepositoryMock.createNote(
                  any<Note>()
@@ -33,6 +34,8 @@ import java.util.*
          ).thenReturn(note)
 
          val createdNote = createNoteUseCase.invoke("Test title", "Test text")
+
+         // then
          assertEquals(note, createdNote)
      }
  }
