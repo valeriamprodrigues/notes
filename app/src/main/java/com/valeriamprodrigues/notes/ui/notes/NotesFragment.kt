@@ -1,20 +1,22 @@
 package com.valeriamprodrigues.notes.ui.notes
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.ViewModel
 import androidx.navigation.fragment.findNavController
 import com.valeriamprodrigues.notes.R
 import com.valeriamprodrigues.notes.data.NOTE_KEY
 import com.valeriamprodrigues.notes.databinding.FragmentNotesBinding
 import com.valeriamprodrigues.notes.domain.model.Note
-import com.valeriamprodrigues.notes.ui.addNote.AddNoteViewModel
+import com.valeriamprodrigues.notes.ui.gone
+import com.valeriamprodrigues.notes.ui.invisible
+import com.valeriamprodrigues.notes.ui.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,7 +46,7 @@ class NotesFragment : Fragment() {
     private fun observeVMEvents() {
         viewModel.notesData.observe(viewLifecycleOwner) {
             binding.swuipeNotes.isRefreshing = false
-            notesAdapter.submitList(it)
+            showMessageWithoutItems(it)
         }
     }
 
@@ -62,9 +64,40 @@ class NotesFragment : Fragment() {
             swuipeNotes.setOnRefreshListener {
                 getNotes()
             }
+            svFragmentNotes.setOnQueryTextListener(object :
+               SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    val filter = viewModel.notesData.value?.filter { note ->
+                        note.text.contains(newText ?: "", true) || note.title.contains(
+                            newText ?: "", true
+                        )
+                    }
+                    showMessageWithoutItems(filter)
+
+                    return true
+                }
+            })
         }
     }
 
+    private fun showMessageWithoutItems(notes: List<Note>?) {
+        notesAdapter.submitList(notes)
+        with(binding) {
+            rvFragmentNotes.smoothScrollToPosition((notes?.size?:0) - 1)
+            if (notes.isNullOrEmpty()) {
+                tvFragmentNotesNoNoteFound.visible()
+                rvFragmentNotes.invisible()
+            }
+            else {
+                tvFragmentNotesNoNoteFound.gone()
+                rvFragmentNotes.visible()
+            }
+        }
+    }
     private fun getNotes() {
         viewModel.getNotes()
     }
@@ -79,8 +112,7 @@ class NotesFragment : Fragment() {
                     val newList = notesAdapter.currentList.toMutableList().apply {
                         add(note)
                     }
-                    notesAdapter.submitList(newList)
-                    binding.rvFragmentNotes.smoothScrollToPosition(newList.size-1)
+                    showMessageWithoutItems(newList)
                     savedStateHandle.remove<Note>(NOTE_KEY )
                 }
             }

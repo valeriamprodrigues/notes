@@ -3,7 +3,7 @@ package com.valeriamprodrigues.notes.data
 import com.google.firebase.firestore.FirebaseFirestore
 import com.valeriamprodrigues.notes.BuildConfig
 import com.valeriamprodrigues.notes.domain.model.Note
-import com.valeriamprodrigues.notes.util.COLLECTION_ROOT
+import com.valeriamprodrigues.notes.data.util.COLLECTION_ROOT
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 

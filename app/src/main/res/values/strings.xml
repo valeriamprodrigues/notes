@@ -1,7 +1,8 @@
 <resources>
     <string name="teste">Notes</string>
-    <string name="title">Title</string>
-    <string name="description">Description</string>
+    <string name="title">Título</string>
+    <string name="description">Descrição</string>
+    <string name="no_note_found">Nenhuma nota encontrada!</string>
     <string name="add_note_button">Add</string>
     <string name="add_note_description_error">Descrição obrigatória</string>
     <string name="add_note_title_error">Titulo obrigatório</string>
