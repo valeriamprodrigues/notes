@@ -16,6 +16,9 @@ MVVM: arquitetura que separa a interface do usuário da lógica de negócios. No
 
 Para utilizar o projeto, é necessário ter o Android Studio instalado. Após clonar o repositório, basta abrir o projeto no Android Studio e executá-lo em um dispositivo Android ou em um emulador.
 
+# Testes
+Para garantir a qualidade do código, foram implementados testes unitários utilizando as bibliotecas Mockito e JUnit. Essas bibliotecas são amplamente utilizadas para testes em Java e Kotlin e permitem a criação de testes de unidade eficazes e eficientes.
+
 # Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma pull request ou uma issue.
